@@ -3,56 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inventario de Alimentación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
     <a href="./../index.html">[Principal]</a>
-    <h1>Inventario de alimentacion</h1>
-    <p>El subsistema "Inventario de alimentación" permite registrar, actualizar, modificar y eliminar información sobre los alimentos de los porcinos, facilitando así un control eficiente de la dieta y el suministro.  </p>
+    <h1>Inventario de Alimentación</h1>
+    <p>El subsistema "Inventario de Alimentación" es una herramienta digital que gestiona la información sobre la dieta de los porcinos, permitiendo registrar, actualizar y eliminar datos de manera ágil. Incluye una interfaz intuitiva y ofrece gestión en tiempo real, alertas para niveles bajos de stock y reportes analíticos sobre consumo y salud animal. La efectividad se medirá a través de indicadores como la precisión en el registro, la eficiencia en el suministro y la satisfacción del usuario, garantizando un control alimentario eficiente y económico.</p>
+    
     <h1>Usuarios del subsistema</h1>
-    <li>Dueño</li>
-    <li>Proveedor</li>
+    <ul>
+        <li>Dueño</li>
+        <li>Proveedor</li>
+    </ul>
 
     <h1>Requerimientos por usuario</h1>
+
     <h2>Requerimientos del Dueño</h2>
     <p>El Dueño debe ser capaz de:</p>
     <ol>
-        <li>Eliminar productos de alimentacion
+        <li>Eliminar productos de alimentación
             <ul>
                 <li>Caducidad</li>
                 <li>Daño</li>
-                <li>Cancelacion</li>
+                <li>Cancelación</li>
             </ul>
         </li>
-        <li>Registrar productos de alimentacion 
+        <li>Registrar productos de alimentación 
             <ul>
                 <li>Marca</li>
                 <li>Tipo</li>
                 <li>Peso</li>
             </ul>
         </li>
-        <li>Filtrar productos de alimentacion
+        <li>Filtrar productos de alimentación
             <ul>
-                <li>Mas consumido</li>
+                <li>Más consumido</li>
             </ul>
+        </li>
     </ol>
 
     <h2>Requerimientos del Proveedor</h2>
     <p>El Proveedor debe ser capaz de:</p>
     <ol>
-        
-        <li>Ingresar productos de alimentacion 
+        <li>Ingresar productos de alimentación 
             <ul>
                 <li>Marca</li>
                 <li>Tipo</li>
                 <li>Peso</li>
             </ul>
         </li>
-        <li>Cambios y devoluciones de productos de alimentacion 
+        <li>Cambios y devoluciones de productos de alimentación 
             <ul>
                 <li>Caducidad</li>
                 <li>Daño</li>
-                <li>Cancelacion</li>
+                <li>Cancelación</li>
             </ul>
         </li>
     </ol>
