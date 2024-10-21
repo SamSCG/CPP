@@ -4,33 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diseño de la base de datos del subsistema</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <li><a href="./../subsistemas/inventario_alimentacion.html">Inventario de Alimentación</a></li>
     <h1>Diseño de la base de datos del subsistema</h1>
-    <p></p>
-   
-    <h2>Objetivo del subsistema</h2>
-
-    <p></p>
-
-    <h1>Usuarios del subsistema</h1>
-
-    <ul>
-        <li></li>
-    </ul>
-
-    <h1>Requerimientos por usuario</h1>
-
-    <h2>Requerimientos del Dueño</h2>
-    <p></p>
-
     
-    <h1>Responsable de la base de Datos</h1>
-    <ul>
-        <li>Samuel Cruz Godinez (22011514@itsoeh.edu.mx)</li>
-    </ul>
+    <img src="./../images/BASE-DE-DATOS.jpg" alt="Descripción de la imagen" width="240">
 
+    <h1>Descripción de la Base de Datos</h1>
+    <p>La base de datos CPP_Inventario_Alimentacion está diseñada para gestionar el inventario de productos de alimentación destinados a la crianza de porcinos. Su estructura está compuesta por dos tablas principales: ProductosAlimentacion y HistorialAlimentacion, cada una de las cuales cumple un rol específico dentro del subsistema.</p>
+    <ol>
+        <li> Tabla: ProductosAlimentacion
+            <ul>
+                <li>Esta tabla almacena información detallada sobre los productos de alimentación disponibles. Contiene los campos necesarios para identificar y caracterizar cada producto, asegurando que los datos pertinentes estén siempre disponibles para la gestión del inventario.</li>
+            </ul>
+        </li>
+
+        <li> Tabla: HistorialAlimentacion
+            <ul>
+                <li>La tabla HistorialAlimentacion registra cada evento de alimentación de los porcinos, enlazando los productos consumidos y las cantidades administradas. Esta información es vital para el seguimiento del consumo y la gestión de la salud de los animales.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h1>Funcionalidades de la Base de datos para el Usuario</h1>
+    <p>La base de datos proporciona una sólida plataforma para implementar las funcionalidades requeridas por el dueño de la granja, facilitando la gestión efectiva del inventario de alimentación. </p>
+    <ol>
+        <li> Registrar/Modificar Productos de Alimentación
+            <ul>
+                <li>El dueño puede ingresar nuevos productos de alimentación o modificar los existentes mediante una interfaz que interactúa con la tabla ProductosAlimentacion. Esto incluye campos como Marca, Tipo, Peso, Precio y Caducidad.
+                </li>
+            </ul>
+        </li>
+
+        <li> Registrar la Alimentación de Porcinos
+            <ul>
+                <li>Al registrar la alimentación, el dueño puede añadir registros en la tabla HistorialAlimentacion, especificando el ID del puerco, el ID del producto alimenticio, la cantidad consumida, la fecha y la hora de la alimentación. Esto permite llevar un control preciso de la nutrición de cada puerco.
+                </li>
+            </ul>
+        </li>
+
+        <li> Filtrar Productos de Alimentación
+            <ul>
+                <li>Se podrán implementar funcionalidades de filtrado que permitan al dueño buscar productos de alimentación según diferentes criterios: Tipo, Marca, Caducidad y Precio. Esto facilitará la rápida identificación de productos disponibles y ayudar a la toma de decisiones.</li>
+            </ul>
+        </li>
+
+        <li> Eliminar Productos de Alimentación:
+            <ul>
+                <li>En caso de que un producto esté dañado o haya pasado su fecha de caducidad, el dueño podrá eliminarlo de la base de datos, asegurando que solo se mantengan productos válidos en el inventario.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h1>Aplicación de las Tres Formas Normales</h1>
+    <ol>
+        <li> Tabla: ProductosAlimentacion
+            <ul>
+                <li>1NF: La tabla garantiza la unicidad de cada producto mediante una clave primaria (ID_Producto), sin grupos repetitivos y con tipos de datos consistentes en todos los campos.</li>
+                <li>2NF: La tabla cumple con la 1NF al no tener grupos repetitivos y almacenar un solo valor por atributo. Además, todos los atributos (Marca, Tipo, Peso, Precio, Caducidad) dependen completamente de la clave primaria simple (ID_Producto), sin dependencias parciales. </li>
+                <li>3NF: La tabla cumple con la 2NF, ya que todos los atributos dependen completamente de la clave primaria, sin dependencias transitivas. Todos los atributos no clave (Marca, Tipo, Peso, Precio, Caducidad) dependen directamente de ID_Producto, sin que uno dependa de otro, como en el caso del Precio y la Marca. </li>
+            </ul>
+        </li>
+
+        <li> Tabla: HistorialAlimentacion
+            <ul>
+                <li>1NF: La tabla asegura la unicidad de cada registro a través de una clave primaria (ID), almacena un solo valor en cada campo sin grupos repetitivos, y mantiene consistencia en los tipos de datos de las columnas. </li>
+                <li>2NF: La tabla cumple con la 1NF al contener valores atómicos en todos los campos, y todos los atributos no clave dependen completamente de la clave primaria (ID), como ID_Puerco, ID_Producto, CantidadConsumida, FechaAlimentacion y Hora, sin dependencias parciales.</li>
+                <li>3NF: La tabla cumple con la 2NF, ya que todos los atributos dependen completamente de la clave primaria, sin dependencias transitivas. Atributos como CantidadConsumida, FechaAlimentacion y Hora dependen únicamente de ID, sin que ID_Producto determine otros atributos que generen dependencia. </li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Código SQL de la Base de Datos</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Código SQL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Crear base de datos</td>
+                <td>CREATE DATABASE CPP_Inventario;</td>
+            </tr>
+            <tr>
+                <td>Usar base de datos</td>
+                <td>USE CPP_Inventario;</td>
+            </tr>
+            <tr>
+                <td>Crear tabla ProductosAlimentacion</td>
+                <td>
+                    CREATE TABLE ProductosAlimentacion (<br>
+                    &nbsp;&nbsp;&nbsp;ID_Producto INT PRIMARY KEY IDENTITY(1,1),<br>
+                    &nbsp;&nbsp;&nbsp;Marca VARCHAR(100) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;Tipo VARCHAR(50) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;Peso DECIMAL(10, 2) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;Precio DECIMAL(10, 2) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;Caducidad DATE NOT NULL<br>
+                    );
+                </td>
+            </tr>
+            <tr>
+                <td>Crear tabla HistorialAlimentacion</td>
+                <td>
+                    CREATE TABLE HistorialAlimentacion (<br>
+                    &nbsp;&nbsp;&nbsp;ID INT PRIMARY KEY IDENTITY(1,1),<br>
+                    &nbsp;&nbsp;&nbsp;ID_Puerco INT NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;ID_Producto INT NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;CantidadConsumida DECIMAL(10, 2) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;FechaAlimentacion DATE NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;Hora VARCHAR(10) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;FOREIGN KEY (ID_Producto) REFERENCES ProductosAlimentacion(ID_Producto)<br>
+                    );
+                </td>
+            </tr>
+            <tr>
+                <td>Relación entre tablas</td>
+                <td>
+                    La tabla HistorialAlimentacion tiene una clave foránea (ID_Producto) que referencia a la clave primaria (ID_Producto) en la tabla ProductosAlimentacion.<br>
+                    Esto asegura que cada registro de alimentación esté vinculado a un producto existente.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Registros de la Base de Datos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID_Producto</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Peso (kg)</th>
+                <th>Precio</th>
+                <th>Caducidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Marca A</td><td>Concentrado</td><td>50.00</td><td>300.00</td><td>2024-12-31</td></tr>
+            <tr><td>2</td><td>Marca B</td><td>Forraje</td><td>20.00</td><td>150.00</td><td>2025-01-15</td></tr>
+            <tr><td>3</td><td>Marca C</td><td>Suplemento</td><td>10.00</td><td>200.00</td><td>2024-10-10</td></tr>
+            <tr><td>4</td><td>Marca A</td><td>Concentrado</td><td>50.00</td><td>320.00</td><td>2024-11-20</td></tr>
+            <tr><td>5</td><td>Marca D</td><td>Forraje</td><td>25.00</td><td>180.00</td><td>2025-02-28</td></tr>
+            <tr><td>6</td><td>Marca E</td><td>Suplemento</td><td>15.00</td><td>250.00</td><td>2024-09-05</td></tr>
+            <tr><td>7</td><td>Marca A</td><td>Concentrado</td><td>45.00</td><td>290.00</td><td>2024-12-01</td></tr>
+            <tr><td>8</td><td>Marca B</td><td>Forraje</td><td>30.00</td><td>160.00</td><td>2025-03-15</td></tr>
+            <tr><td>9</td><td>Marca F</td><td>Suplemento</td><td>12.00</td><td>220.00</td><td>2024-11-10</td></tr>
+            <tr><td>10</td><td>Marca C</td><td>Concentrado</td><td>55.00</td><td>340.00</td><td>2024-11-25</td></tr>
+            <tr><td>11</td><td>Marca G</td><td>Forraje</td><td>22.00</td><td>170.00</td><td>2025-04-01</td></tr>
+            <tr><td>12</td><td>Marca H</td><td>Suplemento</td><td>14.00</td><td>260.00</td><td>2024-08-30</td></tr>
+            <tr><td>13</td><td>Marca A</td><td>Concentrado</td><td>60.00</td><td>310.00</td><td>2024-12-15</td></tr>
+            <tr><td>14</td><td>Marca I</td><td>Forraje</td><td>28.00</td><td>190.00</td><td>2025-05-10</td></tr>
+            <tr><td>15</td><td>Marca J</td><td>Suplemento</td><td>18.00</td><td>230.00</td><td>2024-10-20</td></tr>
+            <tr><td>16</td><td>Marca A</td><td>Concentrado</td><td>48.00</td><td>280.00</td><td>2024-12-05</td></tr>
+            <tr><td>17</td><td>Marca K</td><td>Forraje</td><td>26.00</td><td>175.00</td><td>2025-06-01</td></tr>
+            <tr><td>18</td><td>Marca L</td><td>Suplemento</td><td>16.00</td><td>240.00</td><td>2024-09-15</td></tr>
+            <tr><td>19</td><td>Marca A</td><td>Concentrado</td><td>52.00</td><td>300.00</td><td>2024-11-30</td></tr>
+            <tr><td>20</td><td>Marca M</td><td>Forraje</td><td>24.00</td><td>185.00</td><td>2025-07-10</td></tr>
+            <tr><td>21</td><td>Marca N</td><td>Suplemento</td><td>20.00</td><td>250.00</td><td>2024-10-25</td></tr>
+            <tr><td>22</td><td>Marca A</td><td>Concentrado</td><td>47.00</td><td>275.00</td><td>2024-12-10</td></tr>
+            <tr><td>23</td><td>Marca O</td><td>Forraje</td><td>21.00</td><td>165.00</td><td>2025-08-01</td></tr>
+            <tr><td>24</td><td>Marca P</td><td>Suplemento</td><td>19.00</td><td>255.00</td><td>2024-09-30</td></tr>
+            <tr><td>25</td><td>Marca A</td><td>Concentrado</td><td>53.00</td><td>320.00</td><td>2024-12-20</td></tr>
+            <tr><td>26</td><td>Marca Q</td><td>Forraje</td><td>29.00</td><td>195.00</td><td>2025-09-15</td></tr>
+            <tr><td>27</td><td>Marca R</td><td>Suplemento</td><td>17.00</td><td>235.00</td><td>2024-11-05</td></tr>
+            <tr><td>28</td><td>Marca A</td><td>Concentrado</td><td>54.00</td><td>310.00</td><td>2024-12-25</td></tr>
+            <tr><td>29</td><td>Marca S</td><td>Forraje</td><td>23.00</td><td>180.00</td><td>2025-10-01</td></tr>
+            <tr><td>30</td><td>Marca T</td><td>Suplemento</td><td>11.00</td><td>210.00</td><td>2024-08-15</td></tr>
+        </tbody>
+    </table>
+
+    <h1>Responsable de la base de Datos del subsistema</h1>
+    <ul>
+        <li>Samuel Cruz Godinez</li>
+        <li>(22011514@itsoeh.edu.mx)</li>
+    </ul>
 </body>
 </html>
